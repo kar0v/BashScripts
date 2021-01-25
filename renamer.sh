@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 LINES=$(find ./ -iname "*.c*")
 for i in $LINES
 do
