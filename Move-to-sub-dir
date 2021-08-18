@@ -1,0 +1,60 @@
+[kkarov@karov-E580 ~]$ mkdir -p a/b/{1..7}/newfiles; touch a/b/{1..7}/file.jpg; tree a    
+a
+└── b
+    ├── 1
+    │   ├── file.jpg
+    │   └── newfiles
+    ├── 2
+    │   ├── file.jpg
+    │   └── newfiles
+    ├── 3
+    │   ├── file.jpg
+    │   └── newfiles
+    ├── 4
+    │   ├── file.jpg
+    │   └── newfiles
+    ├── 5
+    │   ├── file.jpg
+    │   └── newfiles
+    ├── 6
+    │   ├── file.jpg
+    │   └── newfiles
+    └── 7
+        ├── file.jpg
+        └── newfiles
+
+15 directories, 7 files
+[kkarov@karov-E580 ~]$ cd a; for LINE in $(find . -name *.jpg); do LOCATION=$(echo $LINE | awk -F "/" '{printf "%s/%s/%s\n",$1,$2,$3}'); echo $LOCATION; mv $LINE $LOCATION/newfiles/; done; tree 
+./b/1
+./b/2
+./b/3
+./b/4
+./b/5
+./b/6
+./b/7
+.
+└── b
+    ├── 1
+    │   └── newfiles
+    │       └── file.jpg
+    ├── 2
+    │   └── newfiles
+    │       └── file.jpg
+    ├── 3
+    │   └── newfiles
+    │       └── file.jpg
+    ├── 4
+    │   └── newfiles
+    │       └── file.jpg
+    ├── 5
+    │   └── newfiles
+    │       └── file.jpg
+    ├── 6
+    │   └── newfiles
+    │       └── file.jpg
+    └── 7
+        └── newfiles
+            └── file.jpg
+
+15 directories, 7 files
+[kkarov@karov-E580 a]$ 
