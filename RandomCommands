@@ -1,0 +1,4 @@
+# deleting old git branches:
+[kkarov@karov-E580 synchr]$ for k in `git branch -a |grep -Ev 'HEAD|master' | sed s/^..//`; do echo -e `git log -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k --`\\t"$k";done | sort | grep -E "[3-9] months|1[1-2] months|year" | awk '{print $NF}' | sed 's/remotes\/origin\///' | sort | grep -i split
+[kkarov@karov-E580 synchr]$ for k in `git branch -a |grep -Ev 'HEAD|master' | sed s/^..//`; do echo -e `git log -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k --`\\t"$k";done | sort | grep -E "[3-9] months|1[1-2] months|year" | awk '{print $NF}' | sed 's/remotes\/origin\///' | sort | wc
+[kkarov@karov-E580 synchr]$ for k in `git branch -a |grep -Ev 'HEAD|master' | sed s/^..//`; do echo -e `git log -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k --`\\t"$k";done | sort | grep -E "[3-9] months|1[1-2] months|year" | awk '{print $NF}' | sed 's/remotes\/origin\///' | sort | xargs -n 1 git push --delete origin
